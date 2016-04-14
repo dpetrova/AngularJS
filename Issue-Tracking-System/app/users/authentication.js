@@ -12,9 +12,10 @@ angular.module('issueTracker.users.authentication', [])
                     method: 'POST',
                     url: BASE_URL + 'api/Account/Register',
                     data: user
-                }).then(function(response) {
+                }).then(function successCallback(response) {
                         deferred.resolve(response.data);
-                    }, function(error) {
+                        sessionStorage.setItem('user', response.data);
+                    }, function errorCallback(error) {
                         console.log(error);
                     });
 
@@ -31,6 +32,7 @@ angular.module('issueTracker.users.authentication', [])
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }).then(function successCallback(response) {
                     deferred.resolve(response.data);
+                    sessionStorage.setItem('user', angular.toJson(response.data));
                 }, function errorCallback(error) {
                     console.log(error);
                 });
@@ -44,9 +46,9 @@ angular.module('issueTracker.users.authentication', [])
                 $http({
                     method: 'POST',
                     url: BASE_URL + 'api/Account/Logout'
-                }).then(function(response) {
+                }).then(function successCallback(response) {
                         deferred.resolve(response.data);
-                    }, function(error) {
+                    }, function errorCallback(error) {
                         console.log(error);
                     });
 

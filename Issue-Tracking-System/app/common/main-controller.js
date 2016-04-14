@@ -1,5 +1,5 @@
 angular.module('issueTracker.common', [])
-    //той не отговаря на никакъв route -> нямаме нужда от .config
+    //there is not any route -> don't need .config
     .controller('MainCtrl', [
         '$scope',
         '$http',

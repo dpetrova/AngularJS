@@ -9,6 +9,7 @@ angular.module('issueTracker', [
   'issueTracker.common.datepicker',
   'issueTracker.home',
   'issueTracker.newsFeed',
+  'issueTracker.projects',
   'issueTracker.users.identity'
 ])
     .config(['$routeProvider', function($routeProvider) {
