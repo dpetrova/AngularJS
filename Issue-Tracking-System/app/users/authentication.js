@@ -5,40 +5,57 @@ angular.module('issueTracker.users.authentication', [])
         'BASE_URL',
         function($http, $q, BASE_URL) {
 
-            function registerUser(user) {
+            function register(user) {
                 var deferred = $q.defer();
 
-                $http.post(BASE_URL + 'Users/Register', user)
-                    .then(function(response) {
+                $http({
+                    method: 'POST',
+                    url: BASE_URL + 'api/Account/Register',
+                    data: user
+                }).then(function(response) {
                         deferred.resolve(response.data);
                     }, function(error) {
-
+                        console.log(error);
                     });
 
                 return deferred.promise;
             }
 
-            function loginUser(user) {
+            function login(user) {
                 var deferred = $q.defer();
 
-                $http.post(BASE_URL + 'Users/Login', user)
-                    .then(function(response) {
-                        console.log(response.data);
-                        deferred.resolve(response.data);
-                    }, function() {
-
-                    });
+                $http({
+                    method: 'POST',
+                    url: BASE_URL + 'api/Token',
+                    data: $.param({grant_type: 'password', username: user.username, password: user.password}),
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }).then(function successCallback(response) {
+                    deferred.resolve(response.data);
+                }, function errorCallback(error) {
+                    console.log(error);
+                });
 
                 return deferred.promise;
             }
 
             function logout() {
+                var deferred = $q.defer();
 
+                $http({
+                    method: 'POST',
+                    url: BASE_URL + 'api/Account/Logout'
+                }).then(function(response) {
+                        deferred.resolve(response.data);
+                    }, function(error) {
+                        console.log(error);
+                    });
+
+                return deferred.promise;
             }
 
             return {
-                registerUser: registerUser,
-                loginUser: loginUser,
+                registerUser: register,
+                loginUser: login,
                 logout: logout
             }
         }]);

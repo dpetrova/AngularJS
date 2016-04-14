@@ -16,7 +16,7 @@ angular.module('issueTracker.home', [
                 authentication.loginUser(user)
                     .then(function(loggedInUser){
                         console.log(loggedInUser);
-                        $location.path('/newsFeed');
+                        $location.path('/dashboard');
                     });
             };
 
@@ -24,6 +24,7 @@ angular.module('issueTracker.home', [
                 authentication.registerUser(user)
                     .then(function(registeredUser) {
                         console.log(registeredUser);
+                        $location.path('/dashboard');
                     });
             };
 
