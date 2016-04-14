@@ -12,9 +12,17 @@ angular.module('issueTracker.projects', [
         'feed',
         function ($scope, feed) {
 
-            feed.all()
+            feed.getAllProjects()
                 .then(function (allProjects) {
                     $scope.allProjects = allProjects.data;
-                    console.log($scope.allProjects)
                 });
+
+            //$scope.viewProject = function(projectId){
+            //    feed.getProjectById(projectId)
+            //        .then(function (project) {
+            //            $scope.currProject = project.data;
+            //            console.log($scope.currProject)
+            //        });
+            //};
+
         }]);

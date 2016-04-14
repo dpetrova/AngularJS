@@ -4,8 +4,7 @@ angular.module('issueTracker.projects.feed', [])
         '$q',
         'BASE_URL',
         function($http, $q, BASE_URL) {
-            function all() {
-
+            function getAllProjects() {
                 var deferred = $q.defer();
 
                 $http.get(BASE_URL + 'projects')
@@ -16,7 +15,19 @@ angular.module('issueTracker.projects.feed', [])
                 return deferred.promise;
             }
 
+            function getProjectById(projectId) {
+                var deferred = $q.defer();
+
+                $http.get(BASE_URL + 'Projects/' + projectId)
+                    .then(function (feed) {
+                        deferred.resolve(feed);
+                    });
+
+                return deferred.promise;
+            }
+
             return {
-                all: all
+                getAllProjects: getAllProjects,
+                getProjectById: getProjectById
             };
         }]);
