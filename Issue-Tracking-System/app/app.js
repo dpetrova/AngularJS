@@ -11,6 +11,7 @@ angular.module('issueTracker', [
   'issueTracker.newsFeed',
   'issueTracker.projects',
   'issueTracker.projectsDetails',
+  'issueTracker.issueDetails',
   'issueTracker.users.identity'
 ])
     .config(['$routeProvider', function($routeProvider) {
