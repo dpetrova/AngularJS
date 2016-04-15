@@ -17,12 +17,4 @@ angular.module('issueTracker.projects', [
                     $scope.allProjects = allProjects.data;
                 });
 
-            //$scope.viewProject = function(projectId){
-            //    feed.getProjectById(projectId)
-            //        .then(function (project) {
-            //            $scope.currProject = project.data;
-            //            console.log($scope.currProject)
-            //        });
-            //};
-
         }]);

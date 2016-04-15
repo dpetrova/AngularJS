@@ -4,6 +4,7 @@ angular.module('issueTracker.projects.feed', [])
         '$q',
         'BASE_URL',
         function($http, $q, BASE_URL) {
+
             function getAllProjects() {
                 var deferred = $q.defer();
 

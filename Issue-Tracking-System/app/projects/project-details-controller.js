@@ -9,10 +9,11 @@ angular.module('issueTracker.projectsDetails', [
     }])
     .controller('ProjectDetailsCtrl', [
         '$scope',
+        '$routeParams',
         'feed',
-        function ($scope, feed) {
+        function ($scope, $routeParams, feed) {
 
-            feed.getProjectById()
+            feed.getProjectById($routeParams.projectId)
                 .then(function (project) {
                     $scope.currProject = project.data;
                     console.log($scope.currProject);

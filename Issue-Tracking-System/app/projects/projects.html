@@ -1,7 +1,6 @@
 <h1>Projects</h1>
 <div ng-repeat="project in allProjects">
     <strong>{{project.Name}}</strong>
-    <!--<button ng-click="viewProject(project.Id)" class="btn btn-info">View</button>-->
     <a href="#/projects/{{project.Id}}" class="btn btn-info">View</a>
 </div>
 <a href="#" class="btn btn-primary">Add New Project</a>

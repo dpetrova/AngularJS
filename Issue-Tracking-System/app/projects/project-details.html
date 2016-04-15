@@ -1,1 +1,20 @@
 <h2>{{currProject.Name}}</h2>
+<a href="#/projects/{{currProject.Id}}/edit" class="btn btn-primary">Edit</a>
+<a href="#/projects/{{currProject.Id}}/add-issue" class="btn btn-primary">Add Issue</a>
+<div><strong>Project key: </strong>{{currProject.Key}}</div>
+<div><strong>Name: </strong>{{currProject.Name}}</div>
+<div><strong>Description: </strong>{{currProject.Description}}</div>
+<div><strong>Lead: </strong>{{currProject.Lead.Username}}</div>
+<div>
+    <strong>Labels: </strong>
+    <div ng-repeat="label in currProject.Labels">
+        <span>{{label.Name}}</span>
+    </div>
+</div>
+<div>
+    <strong>Priorities: </strong>
+    <div ng-repeat="priority in currProject.Priorities">
+        <span>{{priority.Name}}</span>
+    </div>
+</div>
+
