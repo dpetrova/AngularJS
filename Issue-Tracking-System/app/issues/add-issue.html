@@ -1,0 +1,20 @@
+<h2>Add New Issue</h2>
+<div class="row">
+    <div class="col-md-12">
+        <form name="addIssueForm">
+            <div><strong>Title: </strong><input ng-model="issue.Title" type="text" class="form-control"></div>
+            <div><strong>Description: </strong><input ng-model="issue.Description" type="text" class="form-control" ></div>
+            <div><strong>Priority Id: </strong><input ng-model="issue.PriorityId" type="text" class="form-control"></div>
+            <div><strong>Due Date: </strong><input ng-model="issue.DueDate"  type="date" class="form-control"></div>
+            <div class="form-group">
+                <label for="InputAssigned">Assignee</label>
+                <select id="InputAssigned" required="required" ng-model="issue.AssigneeId"
+                        class="form-control"
+                        ng-options="u.Id as u.Username for u in allUsers | orderBy: 'Username'">
+                    <option disabled="disabled" value="">-- choose user --</option>
+                </select>
+            </div>
+            <button ng-click="addNewIssue(issue)" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+</div>

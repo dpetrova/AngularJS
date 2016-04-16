@@ -1,6 +1,7 @@
 angular.module('issueTracker.dashboard', [
     'issueTracker.issues.feed',
-    'issueTracker.common.filters'
+    'issueTracker.common.filters',
+    'angularUtils.directives.dirPagination'
 ])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/dashboard', {

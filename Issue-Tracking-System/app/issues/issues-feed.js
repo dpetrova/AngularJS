@@ -72,6 +72,19 @@ angular.module('issueTracker.issues.feed', [])
                 return deferred.promise;
             }
 
+
+            function addIssue(projectId, newIssue) {
+                var deferred = $q.defer();
+
+                $http.post(BASE_URL + 'Issues/', newIssue)
+                    .then(function (issue) {
+                        deferred.resolve(issue);
+                    });
+
+                return deferred.promise;
+            }
+
+
             function modifiedIssue(issueId, modifiedIssue) {
                 var deferred = $q.defer();
 
@@ -90,7 +103,8 @@ angular.module('issueTracker.issues.feed', [])
                 getIssueById: getIssueById,
                 getAllComments: getAllComments,
                 postComment: postComment,
-                modifiedIssue: modifiedIssue
+                modifiedIssue: modifiedIssue,
+                addIssue: addIssue
             };
         }]);
 

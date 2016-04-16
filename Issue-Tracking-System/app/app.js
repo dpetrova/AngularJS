@@ -7,12 +7,12 @@ angular.module('issueTracker', [
   'issueTracker.common.footer',
   'issueTracker.common.validation',
   'issueTracker.common.datepicker',
-  //'issueTracker.common.filters',
   'issueTracker.home',
   'issueTracker.dashboard',
   'issueTracker.projects',
   'issueTracker.projectsDetails',
   'issueTracker.issueDetails',
+  'issueTracker.addIssue',
   'issueTracker.users.identity'
 ])
     .config(['$routeProvider', function($routeProvider) {

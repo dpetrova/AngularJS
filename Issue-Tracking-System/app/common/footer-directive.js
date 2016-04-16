@@ -6,10 +6,10 @@ angular.module('issueTracker.common.footer', [])
             templateUrl: 'app/common/footer-directive.html',
             //controller: 'MainCtrl',
             link: function(scope, element, attrs, controller){
-                console.log(scope);
-                console.log(element);
-                console.log(attrs);
-                console.log(controller);
+                //console.log(scope);
+                //console.log(element);
+                //console.log(attrs);
+                //console.log(controller);
             }
         };
     });

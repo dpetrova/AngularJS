@@ -17,6 +17,7 @@
     "jquery": "^2.2.3",
     "jquery-ui": "jqueryui#^1.11.4",
     "angular-ui": "^0.4.0",
-    "angular-filter": "^0.5.8"
+    "angular-filter": "^0.5.8",
+    "angularUtils-pagination": "angular-utils-pagination#^0.11.1"
   }
 }
