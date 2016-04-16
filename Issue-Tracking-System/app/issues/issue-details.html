@@ -1,13 +1,22 @@
 <h2>{{currIssue.Title}}</h2>
 <div class="row">
     <div class="col-md-8">
-        <a href="#/issues/{{currIssue.Id}}/edit" class="btn btn-primary">Edit</a>
+        <form name="editIssueForm">
+
+        <button ng-click="editIssue(issue)" class="btn btn-primary">Edit</button>
         <div><strong>Title: </strong>{{currIssue.Title}}</div>
         <div><strong>Issue key: </strong>{{currIssue.IssueKey}}</div>
         <div><strong>Description: </strong>{{currIssue.Description}}</div>
         <div><strong>Assignee: </strong>{{currIssue.Assignee.Username}}</div>
         <div><strong>Priority Id: </strong>{{currIssue.Priority.Id}}</div>
         <div><strong>Due Date: </strong>{{currIssue.DueDate}}</div>
+        <!--<a href="#/issues/{{currIssue.Id}}/edit" class="btn btn-primary">Edit</a>-->
+        <!--<div><strong>Title: </strong>{{currIssue.Title}}</div>-->
+        <!--<div><strong>Issue key: </strong>{{currIssue.IssueKey}}</div>-->
+        <!--<div><strong>Description: </strong>{{currIssue.Description}}</div>-->
+        <!--<div><strong>Assignee: </strong>{{currIssue.Assignee.Username}}</div>-->
+        <!--<div><strong>Priority Id: </strong>{{currIssue.Priority.Id}}</div>-->
+        <!--<div><strong>Due Date: </strong>{{currIssue.DueDate}}</div>-->
         <div>Author: {{currIssue.Author.Username}}</div>
         <div>Project: {{currIssue.Project.Name}}</div>
         <div>Status: {{currIssue.Status.Name}}</div>
@@ -17,6 +26,7 @@
                 <span>{{label.Name}}, </span>
             </div>
         </div>
+        </form>
     </div>
     <div class="col-md-4">
         <h4>Available statuses:</h4>
@@ -25,10 +35,11 @@
 <br/>
 <div class="row">
     <div class="col-md-12">
-        <div ng-repeat="comment in currIssue.Comments">
-            <span>{{comment.author}}</span><br/>
-            <span>{{comment.postedOn}}</span><br/>
-            <span>{{comment.text}}</span>
+        <strong>Comments: </strong>
+        <div ng-repeat="comment in currIssueComments">
+            <span>{{comment.Author.Username}}</span><br/>
+            <span>{{comment.CreatedOn}}</span><br/>
+            <span>{{comment.Text}}</span>
         </div>
         <form name="addCommentForm">
             <div><strong>Text:</strong></div>

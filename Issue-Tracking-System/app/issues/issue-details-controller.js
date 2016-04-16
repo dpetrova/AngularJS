@@ -17,19 +17,31 @@ angular.module('issueTracker.issueDetails', [
             issuesFeed.getIssueById($routeParams.issueId)
                 .then(function (issue) {
                     $scope.currIssue = issue.data;
-                    $scope.currIssue.Comments = [];
-                    console.log($scope.currIssue);
+                    //console.log($scope.currIssue);
+                });
+
+            issuesFeed.getAllComments($routeParams.issueId)
+                .then(function (comments) {
+                    $scope.currIssueComments = comments.data;
+                    //console.log($scope.currIssueComments);
+
                 });
 
             $scope.addComment = function(comment){
-                var currUser = identity.getCurrentUser(),
-                    newComment = {
-                    author: currUser.$$state.value.Username,
-                    postedOn: new Date(),
-                    text: comment.text
+                var newComment = {
+                    Author: $scope.currentUser,
+                    CreatedOn: new Date(),
+                    Text: comment.text
                 };
 
-                $scope.currIssue.Comments.push(newComment);
+                issuesFeed.postComment($routeParams.issueId, newComment)
+                    .then(function (comments) {
+                        $scope.currIssueComments = comments.data;
+                        //console.log($scope.currIssueComments);
+                    });
             };
+
+
+
 
         }]);

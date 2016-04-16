@@ -49,11 +49,47 @@ angular.module('issueTracker.issues.feed', [])
                 return deferred.promise;
             }
 
+            function getAllComments(issueId) {
+                var deferred = $q.defer();
+
+                $http.get(BASE_URL + 'Issues/' + issueId +'/comments')
+                    .then(function (comments) {
+                        deferred.resolve(comments);
+                    });
+
+                return deferred.promise;
+            }
+
+            function postComment(issueId, newComment) {
+                var deferred = $q.defer();
+
+                $http.post(BASE_URL + 'Issues/' + issueId +'/comments', newComment)
+                    .then(function (comment) {
+                        deferred.resolve(comment);
+                    });
+
+                return deferred.promise;
+            }
+
+            function modifiedIssue(issueId, modifiedIssue) {
+                var deferred = $q.defer();
+
+                $http.put(BASE_URL + 'Issues/' + issueId, modifiedIssue)
+                    .then(function (issue) {
+                        deferred.resolve(issue);
+                    });
+
+                return deferred.promise;
+            }
+
             return {
                 getAllProjectIssues: getAllProjectIssues,
                 getAllIssuesByFilter: getAllIssuesByFilter,
                 getMyIssues: getMyIssues,
-                getIssueById: getIssueById
+                getIssueById: getIssueById,
+                getAllComments: getAllComments,
+                postComment: postComment,
+                modifiedIssue: modifiedIssue
             };
         }]);
 

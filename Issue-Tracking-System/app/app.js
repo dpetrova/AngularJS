@@ -8,7 +8,6 @@ angular.module('issueTracker', [
   'issueTracker.common.validation',
   'issueTracker.common.datepicker',
   'issueTracker.home',
-  'issueTracker.newsFeed',
   'issueTracker.projects',
   'issueTracker.projectsDetails',
   'issueTracker.issueDetails',
