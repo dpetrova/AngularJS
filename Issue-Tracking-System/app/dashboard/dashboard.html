@@ -1,0 +1,29 @@
+<h1>Dashboard</h1>
+<h2>Affiliated Projects</h2>
+<div class="row">
+    <div class="col-md-7">
+        <div ng-repeat="issue in myIssues | unique:'issue.Project.Id' ">
+            <h3><a href="#/projects/{{issue.Project.Id}}">{{issue.Project.Name}}</a></h3>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Project</th>
+                <th>Due Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="issue in myIssues | orderBy:'-DueDate'">
+                <td><a href="#/issues/{{issue.Id}}">{{issue.Title}}</a></td>
+                <td>{{issue.Description}}</td>
+                <td>{{issue.Project.Name}}</td>
+                <td>{{issue.DueDate}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

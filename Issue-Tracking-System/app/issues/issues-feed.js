@@ -27,12 +27,13 @@ angular.module('issueTracker.issues.feed', [])
                 return deferred.promise;
             }
 
-            function getMyIssues(pageSize, pageNumber, by) {
+            function getMyIssues(by, pageSize, pageNumber) {
                 var deferred = $q.defer();
-
-                $http.get(BASE_URL + '/Issues/me?pageSize=' + pageSize + '&pageNumber=' + pageNumber + '&orderBy=' + by)
+                $http.get(BASE_URL + '/issues/me?orderBy=' + by + '&pageSize=' + pageSize + '&pageNumber=' + pageNumber)
                     .then(function (feed) {
-                        deferred.resolve(feed);
+                        deferred.resolve(feed.data);
+                    }, function (error) {
+                        defer.reject(error.data.message)
                     });
 
                 return deferred.promise;

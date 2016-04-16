@@ -2,14 +2,6 @@
 <div class="row">
     <div class="col-md-8">
         <form name="editIssueForm">
-
-        <button ng-click="editIssue(issue)" class="btn btn-primary">Edit</button>
-        <div><strong>Title: </strong>{{currIssue.Title}}</div>
-        <div><strong>Issue key: </strong>{{currIssue.IssueKey}}</div>
-        <div><strong>Description: </strong>{{currIssue.Description}}</div>
-        <div><strong>Assignee: </strong>{{currIssue.Assignee.Username}}</div>
-        <div><strong>Priority Id: </strong>{{currIssue.Priority.Id}}</div>
-        <div><strong>Due Date: </strong>{{currIssue.DueDate}}</div>
         <!--<a href="#/issues/{{currIssue.Id}}/edit" class="btn btn-primary">Edit</a>-->
         <!--<div><strong>Title: </strong>{{currIssue.Title}}</div>-->
         <!--<div><strong>Issue key: </strong>{{currIssue.IssueKey}}</div>-->
@@ -17,6 +9,13 @@
         <!--<div><strong>Assignee: </strong>{{currIssue.Assignee.Username}}</div>-->
         <!--<div><strong>Priority Id: </strong>{{currIssue.Priority.Id}}</div>-->
         <!--<div><strong>Due Date: </strong>{{currIssue.DueDate}}</div>-->
+        <button ng-click="editIssue(currIssue)" class="btn btn-primary">Edit</button>
+        <div><strong>Title: </strong><input ng-model="currIssue.Title" type="text" value="{{currIssue.Title}}"></div>
+        <div><strong>Issue key: </strong>{{currIssue.IssueKey}}</div>
+        <div><strong>Description: </strong><input ng-model="currIssue.Description" type="text" value="{{currIssue.Description}}"></div>
+        <div><strong>Assignee: </strong><input ng-model="currIssue.Assignee.Username" type="text" value="{{currIssue.Assignee.Username}}"></div>
+        <div><strong>Priority Id: </strong><input ng-model="currIssue.Priority.Id" type="text" value="{{currIssue.Priority.Id}}"></div>
+        <div><strong>Due Date: </strong><input ng-model="currIssue.DueDate" type="text" value="{{currIssue.DueDate}}"></div>
         <div>Author: {{currIssue.Author.Username}}</div>
         <div>Project: {{currIssue.Project.Name}}</div>
         <div>Status: {{currIssue.Status.Name}}</div>
