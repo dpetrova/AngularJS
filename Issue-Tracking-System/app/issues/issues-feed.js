@@ -85,7 +85,7 @@ angular.module('issueTracker.issues.feed', [])
             }
 
 
-            function modifiedIssue(issueId, modifiedIssue) {
+            function modifyIssue(issueId, modifiedIssue) {
                 var deferred = $q.defer();
 
                 $http.put(BASE_URL + 'Issues/' + issueId, modifiedIssue)
@@ -103,7 +103,7 @@ angular.module('issueTracker.issues.feed', [])
                 getIssueById: getIssueById,
                 getAllComments: getAllComments,
                 postComment: postComment,
-                modifiedIssue: modifiedIssue,
+                modifyIssue: modifyIssue,
                 addIssue: addIssue
             };
         }]);

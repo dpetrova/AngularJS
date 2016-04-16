@@ -41,23 +41,4 @@ angular.module('issueTracker.issueDetails', [
                     });
             };
 
-            $scope.editIssue = function(currIssue){
-                var modifiedIssue = {
-                    Title: currIssue.Title,
-                    Description: currIssue.Description,
-                    DueDate: currIssue.DueDate,
-                    AssigneeId: currIssue.Assignee.Id,
-                    PriorityId: currIssue.Priority.Id
-                };
-
-                issuesFeed.modifiedIssue($routeParams.issueId, modifiedIssue)
-                    .then(function (issue) {
-                        $scope.currIssue = issue.data;
-                        console.log($scope.currIssue);
-                    });
-            };
-
-
-
-
         }]);

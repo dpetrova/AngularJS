@@ -13,6 +13,7 @@ angular.module('issueTracker', [
   'issueTracker.projectsDetails',
   'issueTracker.issueDetails',
   'issueTracker.addIssue',
+  'issueTracker.editIssue',
   'issueTracker.users.identity'
 ])
     .config(['$routeProvider', function($routeProvider) {

@@ -2,13 +2,13 @@
 <h2>Affiliated Projects</h2>
 
 <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-5">
         <div ng-repeat="issue in myIssues | unique:'issue.Project.Id' ">
             <h3><a href="#/projects/{{issue.Project.Id}}">{{issue.Project.Name}}</a></h3>
         </div>
     </div>
-    <div class="col-md-5">
-        <table class="table table-hover">
+    <div class="col-md-7">
+        <table class="table table-hover ">
             <thead>
             <tr>
                 <th>Title</th>
@@ -22,7 +22,7 @@
                 <td><a href="#/issues/{{issue.Id}}">{{issue.Title}}</a></td>
                 <td>{{issue.Description}}</td>
                 <td>{{issue.Project.Name}}</td>
-                <td>{{issue.DueDate}}</td>
+                <td>{{issue.DueDate | date}}</td>
             </tr>
             </tbody>
         </table>

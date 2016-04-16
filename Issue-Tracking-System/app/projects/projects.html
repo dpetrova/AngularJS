@@ -1,6 +1,19 @@
-<h1>Projects</h1>
-<div ng-repeat="project in allProjects">
-    <strong>{{project.Name}}</strong>
-    <a href="#/projects/{{project.Id}}" class="btn btn-info">View</a>
+<!--<h1>Projects</h1>-->
+<!--<div ng-repeat="project in allProjects">-->
+    <!--<strong>{{project.Name}}</strong>-->
+    <!--<a href="#/projects/{{project.Id}}" class="btn btn-info">View</a>-->
+<!--</div>-->
+<!--<a href="#" class="btn btn-primary">Add New Project</a>-->
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1><span class="glyphicon glyphicon-folder-open"></span><br>Projects</h1>
+        <a href="#/projects/add" class="btn btn-primary">Add New Project</a>
+        <div class="panel panel-success">
+            <ul class="text-left list-group">
+                <a href="#/projects/{{project.Id}}" ng-repeat="project in allProjects" class="list-group-item">{{project.Name}}</a>
+            </ul>
+        </div>
+    </div>
 </div>
-<a href="#" class="btn btn-primary">Add New Project</a>
