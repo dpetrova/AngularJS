@@ -11,6 +11,7 @@ angular.module('issueTracker', [
   'issueTracker.dashboard',
   'issueTracker.projects',
   'issueTracker.projectsDetails',
+  'issueTracker.addProject',
   'issueTracker.issueDetails',
   'issueTracker.addIssue',
   'issueTracker.editIssue',

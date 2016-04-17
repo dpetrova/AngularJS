@@ -33,7 +33,7 @@
         </div>
         <form name="addCommentForm">
             <div><strong>Text:</strong></div>
-            <textarea ng-model="comment.text" class="form-control"></textarea><br/>
+            <textarea ng-model="comment.text" class="form-control" required></textarea><br/>
             <button ng-click="addComment(comment)" ng-class="addCommentForm.$invalid ? 'disabled-button' : ''" ng-disabled="addCommentForm.$invalid" class="btn btn-primary">Add Comment</button>
         </form>
     </div>

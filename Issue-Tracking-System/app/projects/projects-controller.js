@@ -12,7 +12,7 @@ angular.module('issueTracker.projects', [
         'feed',
         function ($scope, feed) {
 
-            feed.getAllProjects()
+            feed.getAllProjects(10, 1)
                 .then(function (allProjects) {
                     $scope.allProjects = allProjects.data;
                 });

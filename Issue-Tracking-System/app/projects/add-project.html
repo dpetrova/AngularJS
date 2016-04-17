@@ -1,0 +1,21 @@
+<h2>Add New Project</h2>
+<div class="row">
+    <div class="col-md-12">
+        <form name="addProjectForm">
+            <div><strong>Name: </strong><input ng-model="project.Name" type="text" class="form-control" required placeholder="Name..."></div>
+            <div><strong>Description: </strong><input ng-model="project.Description" type="text" class="form-control" required placeholder="Description..."></div>
+            <div><strong>Project Key: </strong><input ng-model="project.ProjectKey" type="text" class="form-control" required value="{{project.Name}}"></div>
+            <div><strong>Priorities (separated by comma): </strong><input ng-model="project.AllPriorities" type="text" class="form-control" placeholder="Priorities..."></div>
+            <div><strong>Labels (separated by comma): </strong><input ng-model="project.Labels" type="text" class="form-control" placeholder="Labels..."></div>
+            <div class="form-group">
+                <label for="InputAssigned">Assignee</label>
+                <select id="InputAssigned" required="required" ng-model="project.AssigneeId"
+                        class="form-control"
+                        ng-options="u.Id as u.Username for u in allUsers | orderBy: 'Username'">
+                    <option disabled="disabled" value="">-- choose user --</option>
+                </select>
+            </div>
+            <button ng-click="addNewProject(project)" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+</div>

@@ -39,4 +39,8 @@ angular.module('issueTracker.editIssue', [
                         $location.path('/issues/' + $routeParams.issueId);
                     });
             };
+
+            $scope.cancelEditIssue = function(){
+                $location.path('/issues/' + $routeParams.issueId);
+            };
         }]);

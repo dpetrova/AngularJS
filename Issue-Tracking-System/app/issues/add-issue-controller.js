@@ -39,4 +39,8 @@ angular.module('issueTracker.addIssue', [
                         $location.path('/projects/' + $routeParams.projectId);
                     });
             };
+
+            $scope.cancelAddIssue = function(){
+                $location.path('/projects/' + $routeParams.projectId);
+            };
         }]);

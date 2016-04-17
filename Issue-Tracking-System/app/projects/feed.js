@@ -5,10 +5,10 @@ angular.module('issueTracker.projects.feed', [])
         'BASE_URL',
         function($http, $q, BASE_URL) {
 
-            function getAllProjects() {
+            function getAllProjects(pageSize, pageNumber) {
                 var deferred = $q.defer();
 
-                $http.get(BASE_URL + 'projects')
+                $http.get(BASE_URL + 'Projects/?pageSize=' +pageSize + '&pageNumber=' + pageNumber)
                     .then(function (feed) {
                         deferred.resolve(feed);
                     });
@@ -27,8 +27,21 @@ angular.module('issueTracker.projects.feed', [])
                 return deferred.promise;
             }
 
+
+            function addProject(newProject) {
+                var deferred = $q.defer();
+
+                $http.post(BASE_URL + 'Projects/', newProject)
+                    .then(function (project) {
+                        deferred.resolve(project);
+                    });
+
+                return deferred.promise;
+            }
+
             return {
                 getAllProjects: getAllProjects,
-                getProjectById: getProjectById
+                getProjectById: getProjectById,
+                addProject: addProject
             };
         }]);

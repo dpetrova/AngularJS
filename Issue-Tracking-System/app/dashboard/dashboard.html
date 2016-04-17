@@ -1,13 +1,13 @@
-<h1>Dashboard</h1>
-<h2>Affiliated Projects</h2>
-
+<h1><span class="glyphicon glyphicon-home"></span><br>Dashboard</h1>
 <div class="row">
     <div class="col-md-5">
+        <h2>Affiliated Projects</h2>
         <div ng-repeat="issue in myIssues | unique:'issue.Project.Id' ">
             <h3><a href="#/projects/{{issue.Project.Id}}">{{issue.Project.Name}}</a></h3>
         </div>
     </div>
     <div class="col-md-7">
+        <h2><span class="glyphicon glyphicon-tasks"></span><br>My Tasks</h2>
         <table class="table table-hover ">
             <thead>
             <tr>
