@@ -4,7 +4,8 @@ angular.module('issueTracker.common', [])
         '$scope',
         '$http',
         'identity',
-        function($scope, $http, identity) {
+        'authentication',
+        function($scope, $http, identity, authentication) {
 
             identity.getCurrentUser()
                 .then(function(user) {
@@ -12,5 +13,9 @@ angular.module('issueTracker.common', [])
                 });
 
             $scope.isAuthenticated = identity.isAuthenticated();
+
+            $scope.logout = function () {
+                authentication.logout();
+            };
 
         }]);

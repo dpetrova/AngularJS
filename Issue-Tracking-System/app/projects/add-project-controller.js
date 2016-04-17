@@ -3,7 +3,7 @@ angular.module('issueTracker.addProject', [
     'issueTracker.users.feed'
 ])
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/projects/add', {
+        $routeProvider.when('/projects-add', {
             templateUrl: 'app/projects/add-project.html',
             controller: 'AddProjectCtrl'
         });
@@ -33,7 +33,8 @@ angular.module('issueTracker.addProject', [
                     Description: project.Description,
                     ProjectKey: project.ProjectKey,
                     Priorities: project.Priorities,
-                    AssigneeId: project.AssigneeId
+                    AssigneeId: project.AssigneeId,
+                    LeadId: project.LeadId
                 };
 
                 feed.addProject(newProject)
@@ -41,5 +42,9 @@ angular.module('issueTracker.addProject', [
                         console.log(project.data);
                         $location.path('/projects');
                     });
+            };
+
+            $scope.cancelAddProject = function(){
+                $location.path('/projects');
             };
         }]);

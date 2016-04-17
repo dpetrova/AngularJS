@@ -12,11 +12,11 @@ angular.module('issueTracker.users.authentication', [])
                     method: 'POST',
                     url: BASE_URL + 'api/Account/Register',
                     data: user
-                }).then(function successCallback(response) {
+                }).then(function success(response) {
                         deferred.resolve(response.data);
                         sessionStorage.setItem('user', response.data);
-                    }, function errorCallback(error) {
-                        console.log(error);
+                    }, function error(error) {
+                        deferred.reject(error.data.message);
                     });
 
                 return deferred.promise;
@@ -30,29 +30,22 @@ angular.module('issueTracker.users.authentication', [])
                     url: BASE_URL + 'api/Token',
                     data: $.param({grant_type: 'password', username: user.username, password: user.password}),
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-                }).then(function successCallback(response) {
+                }).then(function success(response) {
                     deferred.resolve(response.data);
+                    var token = response.data.access_token;
                     sessionStorage.setItem('user', angular.toJson(response.data));
-                }, function errorCallback(error) {
-                    console.log(error);
+                    sessionStorage.headers = 'Bearer ' + token;
+                    sessionStorage.userName = response.data.userName;
+                }, function error(error) {
+                    deferred.reject(error.data.message);
                 });
 
                 return deferred.promise;
             }
 
             function logout() {
-                var deferred = $q.defer();
-
-                $http({
-                    method: 'POST',
-                    url: BASE_URL + 'api/Account/Logout'
-                }).then(function successCallback(response) {
-                        deferred.resolve(response.data);
-                    }, function errorCallback(error) {
-                        console.log(error);
-                    });
-
-                return deferred.promise;
+                sessionStorage.clear();
+                $http.defaults.headers.common.Authorization = null;
             }
 
             return {

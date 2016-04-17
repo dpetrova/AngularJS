@@ -1,4 +1,4 @@
-<h2>Add New Project</h2>
+<h2><span class="glyphicon glyphicon-plus"></span><br>Add New Project</h2>
 <div class="row">
     <div class="col-md-12">
         <form name="addProjectForm">
@@ -8,6 +8,14 @@
             <div><strong>Priorities (separated by comma): </strong><input ng-model="project.AllPriorities" type="text" class="form-control" placeholder="Priorities..."></div>
             <div><strong>Labels (separated by comma): </strong><input ng-model="project.Labels" type="text" class="form-control" placeholder="Labels..."></div>
             <div class="form-group">
+                <label for="InputLead">Leader</label>
+                <select id="InputLead" required="required" ng-model="project.LeadId"
+                        class="form-control"
+                        ng-options="u.Id as u.Username for u in allUsers | orderBy: 'Username'">
+                    <option disabled="disabled" value="">-- choose user --</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="InputAssigned">Assignee</label>
                 <select id="InputAssigned" required="required" ng-model="project.AssigneeId"
                         class="form-control"
@@ -16,6 +24,7 @@
                 </select>
             </div>
             <button ng-click="addNewProject(project)" class="btn btn-primary">Add</button>
+            <button ng-click="cancelAddProject()" class="btn btn-primary">Cancel</button>
         </form>
     </div>
 </div>
