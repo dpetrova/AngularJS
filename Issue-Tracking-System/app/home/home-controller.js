@@ -28,5 +28,4 @@ angular.module('issueTracker.home', [
                     });
             };
 
-            $scope.something = 'something';
         }]);

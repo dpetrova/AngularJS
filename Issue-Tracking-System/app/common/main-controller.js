@@ -5,7 +5,8 @@ angular.module('issueTracker.common', [])
         '$http',
         'identity',
         'authentication',
-        function($scope, $http, identity, authentication) {
+        '$location',
+        function($scope, $http, identity, authentication, $location) {
 
             identity.getCurrentUser()
                 .then(function(user) {
@@ -16,6 +17,7 @@ angular.module('issueTracker.common', [])
 
             $scope.logout = function () {
                 authentication.logout();
+                $location.path('/');
             };
 
         }]);

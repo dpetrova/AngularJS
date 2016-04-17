@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-md-5">
         <h2>Affiliated Projects</h2>
-        <div ng-repeat="issue in myIssues | unique:'issue.Project.Id' ">
+        <div ng-repeat="issue in myIssues" > <!--| unique:'id'-->
             <h3><a href="#/projects/{{issue.Project.Id}}">{{issue.Project.Name}}</a></h3>
         </div>
     </div>
@@ -18,7 +18,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="issue in myIssues | orderBy:'-DueDate'">
+            <tr ng-repeat="issue in myIssues | orderBy:'DueDate'">
                 <td><a href="#/issues/{{issue.Id}}">{{issue.Title}}</a></td>
                 <td>{{issue.Description}}</td>
                 <td>{{issue.Project.Name}}</td>

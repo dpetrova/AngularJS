@@ -17,6 +17,6 @@ angular.module('issueTracker.dashboard', [
             issuesFeed.getMyIssues('DueDate desc, IssueKey', 10, 1)
                 .then(function (issues) {
                     $scope.myIssues = issues.Issues;
-                    console.log($scope.myIssues);
+                    //console.log($scope.myIssues);
                 });
         }]);
