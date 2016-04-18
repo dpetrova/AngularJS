@@ -48,9 +48,22 @@ angular.module('issueTracker.users.authentication', [])
                 $http.defaults.headers.common.Authorization = null;
             }
 
+            function getCurrentUser() {
+                var defer = $q.defer();
+                $http.get(BASE_URL + 'users/me', {headers: {'Authorization': sessionStorage.headers}})
+                    .then(function (response) {
+                        defer.resolve(response.data)
+                        //console.log(response.data)
+                    }, function (error) {
+                        defer.reject(error)
+                    });
+                return defer.promise;
+            }
+
             return {
                 registerUser: register,
                 loginUser: login,
-                logout: logout
+                logout: logout,
+                getCurrentUser: getCurrentUser
             }
         }]);

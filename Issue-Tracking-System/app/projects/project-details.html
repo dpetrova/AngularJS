@@ -1,8 +1,8 @@
 <h2><span class="glyphicon glyphicon-folder-open"></span><br>{{currProject.Name}}</h2>
 <div class="row">
     <div class="col-md-4">
-        <a href="#/projects/{{currProject.Id}}/edit" class="btn btn-primary">Edit</a>
-        <a href="#/projects/{{currProject.Id}}/add-issue" class="btn btn-primary">Add Issue</a>
+        <a href="#/projects/{{currProject.Id}}/edit" class="btn btn-primary" ng-if="currentUser.isAdmin || isProjectLead">Edit</a>
+        <a href="#/projects/{{currProject.Id}}/add-issue" class="btn btn-primary" ng-if="currentUser.isAdmin || isProjectLead">Add Issue</a>
         <div><strong>Project key: </strong>{{currProject.ProjectKey}}</div>
         <div><strong>Name: </strong>{{currProject.Name}}</div>
         <div><strong>Description: </strong>{{currProject.Description}}</div>

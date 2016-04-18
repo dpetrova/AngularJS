@@ -18,6 +18,7 @@ angular.module('issueTracker.users.identity', [])
                     .then(function(response) {
                         currentUser = response.data;
                         deferred.resolve(currentUser);
+                        //console.log(currentUser)
                     });
             }
 
@@ -36,6 +37,12 @@ angular.module('issueTracker.users.identity', [])
                     } else{
                         return false;
                     }
+                },
+                isAdmin: function () {
+                    return currentUser.isAdmin;
+                },
+                isProjectLead: function (projectLeadId) {
+                    return currentUser.Id === projectLeadId;
                 }
             };
         }]);

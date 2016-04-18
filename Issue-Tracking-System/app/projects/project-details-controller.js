@@ -13,12 +13,15 @@ angular.module('issueTracker.projectsDetails', [
         '$routeParams',
         'feed',
         'issuesFeed',
-        function ($scope, $routeParams, feed, issuesFeed) {
+        'identity',
+        function ($scope, $routeParams, feed, issuesFeed, identity) {
 
             feed.getProjectById($routeParams.projectId)
                 .then(function (project) {
                     $scope.currProject = project.data;
-                    //console.log($scope.currProject);
+                    console.log($scope.currProject);
+
+                    $scope.isProjectLead = identity.isProjectLead($scope.currProject.Lead.Id);
                 });
 
             issuesFeed.getAllProjectIssues($routeParams.projectId)
