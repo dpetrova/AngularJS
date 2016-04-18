@@ -19,7 +19,19 @@
         </div>
     </div>
     <div class="col-md-4">
-        <h4>Available statuses:</h4>
+        <form name="changeStatusForm">
+        <div class="form-group">
+            <label for="InputStatus">Change issue status:</label>
+            <select id="InputStatus" ng-model="currIssue.Status.Name" class="form-control" ng-init="currIssue.Status.Name='Open'">
+                <option value="Open">Open</option>
+                <option value="InProgress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+                <option value="Closed">Closed</option>
+                <option value="ReOpened">Re-Opened</option>
+            </select>
+        </div>
+        <button ng-click="changeStatus(currIssue)" class="btn btn-primary">Change</button>
+        </form>
     </div>
 </div>
 <br/>

@@ -96,6 +96,18 @@ angular.module('issueTracker.issues.feed', [])
                 return deferred.promise;
             }
 
+            function changeStatus(issueId, statusId) {
+                var deferred = $q.defer();
+
+                $http.put(BASE_URL + 'Issues/' + issueId + '/changestatus?statusid=' + statusId)
+                    .then(function (statuses) {
+                        deferred.resolve(statuses);
+                    });
+
+                return deferred.promise;
+            }
+
+
             return {
                 getAllProjectIssues: getAllProjectIssues,
                 getAllIssuesByFilter: getAllIssuesByFilter,
@@ -104,7 +116,8 @@ angular.module('issueTracker.issues.feed', [])
                 getAllComments: getAllComments,
                 postComment: postComment,
                 modifyIssue: modifyIssue,
-                addIssue: addIssue
+                addIssue: addIssue,
+                changeStatus: changeStatus
             };
         }]);
 
