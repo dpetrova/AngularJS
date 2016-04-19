@@ -47,7 +47,7 @@ angular.module('issueTracker.issues.feed', [])
                 var deferred = $q.defer();
                 $http.get(BASE_URL + '/issues/me?pageSize=' + pageSize + '&pageNumber=' + pageNumber + '&orderBy=' + by)
                     .then(function (feed) {
-                        deferred.resolve(feed.data);
+                        deferred.resolve(feed);
                     }, function (error) {
                         defer.reject(error.data.message)
                     });

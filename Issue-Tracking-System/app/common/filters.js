@@ -1,5 +1,5 @@
 angular.module('issueTracker.common.filters', [])
-    .filter("unique", function(){
+    .filter('unique', function(){
         return function(collection, keyname) {
             var output = [],
                 keys = [];

@@ -1,0 +1,18 @@
+<div class="margin-bottom-100"></div>
+<div class="row">
+    <div class="col-md-12 border">
+        <h2>Change Password</h2>
+        <form name="changePassForm">
+            <label for="reg-oldPass" class="glyphicon glyphicon-lock"></label><br/>
+            <input type="password" required="required" min-length="6" max-length="100" ng-model="user.oldPassword" id="reg-oldPass" class="form-control" placeholder="Old Password..."/>
+            <br />
+            <label for="reg-newPass" class="glyphicon glyphicon-lock"></label>
+            <input type="password" required="required" min-length="6" max-length="100" ng-model="user.newPassword" id="reg-newPass" class="form-control" placeholder="New Password..."/>
+            <br />
+            <label for="reg-confirmPass" class="glyphicon glyphicon-lock"></label>
+            <input type="password" required="required" min-length="6" max-length="100" ng-model="user.confirmPassword" id="reg-confirmPass" class="form-control" placeholder="Confirm Password..."/>
+            <br />
+            <button class="btn btn-primary" ng-disabled="changePassForm.$invalid || user.newPassword != user.confirmPassword" ng-click="changePass(user)">Change Password</button>
+        </form>
+    </div>
+</div>

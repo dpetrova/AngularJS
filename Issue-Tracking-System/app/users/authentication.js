@@ -60,10 +60,29 @@ angular.module('issueTracker.users.authentication', [])
                 return defer.promise;
             }
 
+
+            function changePassword(user) {
+                var deferred = $q.defer();
+
+                $http({
+                    method: 'POST',
+                    url: BASE_URL + 'api/Account/ChangePassword',
+                    data: $.param({grant_type: 'password', OldPassword: user.oldPassword, NewPassword: user.newPassword, ConfirmPassword: user.confirmPassword}),
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }).then(function success(response) {
+                    deferred.resolve(response.data);
+                }, function error(error) {
+                    deferred.reject(error.data.message);
+                });
+
+                return deferred.promise;
+            }
+
             return {
                 registerUser: register,
                 loginUser: login,
                 logout: logout,
-                getCurrentUser: getCurrentUser
+                getCurrentUser: getCurrentUser,
+                changePassword: changePassword
             }
         }]);

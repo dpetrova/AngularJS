@@ -7,7 +7,7 @@
         <div><strong>Description: </strong>{{currIssue.Description}}</div>
         <div><strong>Assignee: </strong>{{currIssue.Assignee.Username}}</div>
         <div><strong>Priority: </strong>{{currIssue.Priority.Name}}</div>
-        <div><strong>Due Date: </strong>{{currIssue.DueDate}}</div>
+        <div><strong>Due Date: </strong>{{currIssue.DueDate | date}}</div>
         <div><strong>Author: </strong>{{currIssue.Author.Username}}</div>
         <div><strong>Project: </strong>{{currIssue.Project.Name}}</div>
         <div><strong>Status: </strong>{{currIssue.Status.Name}}</div>

@@ -1,7 +1,7 @@
 angular.module('issueTracker.dashboard', [
     'issueTracker.issues.feed',
-    'issueTracker.common.filters',
-    'angularUtils.directives.dirPagination'
+    'issueTracker.common.filters'
+    //'angularUtils.directives.dirPagination'
 ])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/dashboard', {
@@ -14,12 +14,6 @@ angular.module('issueTracker.dashboard', [
         'issuesFeed',
         function ($scope, issuesFeed) {
 
-            //issuesFeed.getMyIssues(10, 1, 'DueDate desc, IssueKey')
-            //    .then(function (issues) {
-            //        $scope.myIssues = issues.Issues;
-            //        //console.log($scope.myIssues);
-            //    });
-
             $scope.issuesParams = {
                 'pageSize' : 10,
                 'startPage' : 1
@@ -28,8 +22,9 @@ angular.module('issueTracker.dashboard', [
             $scope.reloadIssues = function() {
                 issuesFeed.getMyIssues($scope.issuesParams.pageSize, $scope.issuesParams.startPage, 'DueDate desc, IssueKey')
                     .then(function (myIssues) {
-                        console.log(myIssues);
-                        $scope.myIssues = myIssues;
+                        //console.log(myIssues.data);
+                        $scope.myIssues = myIssues.data;
+                        $scope.myIssues.TotalCount = $scope.myIssues.TotalPages * $scope.issuesParams.pageSize; //because by default TotalCount: 0 -> BUG?
                     });
             };
 

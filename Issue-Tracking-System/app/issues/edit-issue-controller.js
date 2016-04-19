@@ -27,7 +27,7 @@ angular.module('issueTracker.editIssue', [
             issuesFeed.getIssueById($routeParams.issueId)
                 .then(function (issue) {
                     $scope.currIssue = issue.data;
-                    console.log($scope.currIssue);
+                    //console.log($scope.currIssue);
                 });
 
             $scope.editIssue = function(issue){

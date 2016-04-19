@@ -17,6 +17,7 @@ angular.module('issueTracker', [
   'issueTracker.addIssue',
   'issueTracker.editIssue',
   'issueTracker.users.identity',
+  'issueTracker.profile',
   'ui.bootstrap.pagination'
 ])
     .config(['$routeProvider', function($routeProvider) {
