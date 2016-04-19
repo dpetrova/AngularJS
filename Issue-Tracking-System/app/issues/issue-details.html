@@ -1,7 +1,7 @@
 <h2>{{currIssue.Title}}</h2>
 <div class="row">
     <div class="col-md-8">
-        <a href="#/issues/{{currIssue.Id}}/edit" class="btn btn-primary">Edit</a>
+        <a href="#/issues/{{currIssue.Id}}/edit" class="btn btn-primary" ng-if="currentUser.isAdmin || isProjectLead">Edit</a>
         <div><strong>Title: </strong>{{currIssue.Title}}</div>
         <div><strong>Issue key: </strong>{{currIssue.IssueKey}}</div>
         <div><strong>Description: </strong>{{currIssue.Description}}</div>

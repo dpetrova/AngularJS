@@ -13,14 +13,18 @@ angular.module('issueTracker.projects', [
         function ($scope, feed) {
 
             $scope.projectsParams = {
-                'startPage' : 1,
-                'pageSize' : 10
+                'pageSize' : 10,
+                'startPage' : 1
             };
 
-            feed.getAllProjects(10, 1)
-                .then(function (allProjects) {
-                    $scope.allProjects = allProjects.data;
-                    console.log($scope.allProjects)
-                });
+            $scope.reloadProjects = function() {
+                feed.getAllProjects($scope.projectsParams.pageSize, $scope.projectsParams.startPage)
+                    .then(function (allProjects) {
+                        $scope.allProjects = allProjects.data;
+                        //console.log($scope.allProjects);
+                    });
+            };
+
+            $scope.reloadProjects();
 
         }]);

@@ -8,7 +8,7 @@ angular.module('issueTracker.projects.feed', [])
             function getAllProjects(pageSize, pageNumber) {
                 var deferred = $q.defer();
 
-                $http.get(BASE_URL + 'Projects/?pageSize=' +pageSize + '&pageNumber=' + pageNumber)
+                $http.get(BASE_URL + 'Projects/?filter=&pageSize=' +pageSize + '&pageNumber=' + pageNumber)
                     .then(function (feed) {
                         deferred.resolve(feed);
                     });
