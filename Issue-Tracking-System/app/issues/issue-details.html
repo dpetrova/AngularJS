@@ -1,4 +1,4 @@
-<h2>{{currIssue.Title}}</h2>
+<h2><span class="glyphicon glyphicon-info-sign"></span><br>{{currIssue.Title}}</h2>
 <div class="row">
     <div class="col-md-8">
         <a href="#/issues/{{currIssue.Id}}/edit" class="btn btn-primary" ng-if="currentUser.isAdmin || isProjectLead">Edit</a>
@@ -20,31 +20,30 @@
     </div>
     <div class="col-md-4">
         <form name="changeStatusForm">
-        <div class="form-group">
-            <label for="InputStatus">Change issue status:</label>
-            <select id="InputStatus" ng-model="currIssue.Status.Name" class="form-control" ng-init="currIssue.Status.Name='Open'">
-                <option value="Open">Open</option>
-                <option value="InProgress">In Progress</option>
-                <option value="Resolved">Resolved</option>
-                <option value="Closed">Closed</option>
-                <option value="ReOpened">Re-Opened</option>
-            </select>
-        </div>
-        <button ng-click="changeStatus(currIssue)" class="btn btn-primary">Change</button>
+            <div class="form-group">
+                <label for="InputStatus">Change issue status:</label>
+                <select id="InputStatus" required="required" ng-model="currIssue.Status.Id"
+                        class="form-control"
+                        ng-options="s.Id as s.Name for s in currIssue.AvailableStatuses | orderBy: 'Id'" >
+                    <option disabled="disabled" value="">-- choose status --</option>
+                </select>
+            </div>
+            <button ng-click="changeStatus(currIssue)" class="btn btn-primary">Change</button>
         </form>
     </div>
 </div>
 <br/>
 <div class="row">
     <div class="col-md-12">
-        <strong>Comments: </strong>
+        <strong ng-if="currIssueComments.length > 0">Comments: </strong>
         <div ng-repeat="comment in currIssueComments">
             <span>{{comment.Author.Username}}</span><br/>
             <span>{{comment.CreatedOn}}</span><br/>
             <span>{{comment.Text}}</span>
         </div>
+        <br/>
         <form name="addCommentForm">
-            <div><strong>Text:</strong></div>
+            <div><h3 class="glyphicon glyphicon-comment"></h3><br><strong>Text:</strong></div>
             <textarea ng-model="comment.text" class="form-control" required></textarea><br/>
             <button ng-click="addComment(comment)" ng-class="addCommentForm.$invalid ? 'disabled-button' : ''" ng-disabled="addCommentForm.$invalid" class="btn btn-primary">Add Comment</button>
         </form>

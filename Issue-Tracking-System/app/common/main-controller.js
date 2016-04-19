@@ -1,4 +1,6 @@
-angular.module('issueTracker.common', [])
+angular.module('issueTracker.common', [
+    'issueTracker.users.authentication',
+    'issueTracker.notify'])
     //there is not any route -> don't need .config
     .controller('MainCtrl', [
         '$scope',
@@ -6,7 +8,8 @@ angular.module('issueTracker.common', [])
         'identity',
         'authentication',
         '$location',
-        function($scope, $http, identity, authentication, $location) {
+        'notify',
+        function($scope, $http, identity, authentication, $location, notify) {
 
             identity.getCurrentUser()
                 .then(function(user) {
@@ -26,6 +29,7 @@ angular.module('issueTracker.common', [])
 
             $scope.logout = function () {
                 authentication.logout();
+                notify.showInfo("Logout successfully");
                 $location.path('/');
             };
 

@@ -1,5 +1,6 @@
 angular.module('issueTracker.issueDetails', [
-    'issueTracker.issues.feed'
+    'issueTracker.issues.feed',
+    'issueTracker.notify'
 ])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/issues/:issueId', {
@@ -13,12 +14,14 @@ angular.module('issueTracker.issueDetails', [
         'issuesFeed',
         'identity',
         '$location',
-        function ($scope, $routeParams, issuesFeed, identity, $location) {
+        'notify',
+        '$route',
+        function ($scope, $routeParams, issuesFeed, identity, $location, notify, $route) {
 
             issuesFeed.getIssueById($routeParams.issueId)
                 .then(function (issue) {
                     $scope.currIssue = issue.data;
-                    //console.log($scope.currIssue);
+                    console.log($scope.currIssue);
                 });
 
             issuesFeed.getAllComments($routeParams.issueId)
@@ -45,26 +48,32 @@ angular.module('issueTracker.issueDetails', [
 
             $scope.changeStatus = function(currIssue){
 
-                //issuesFeed.changeStatus($routeParams.issueId, project.Status.Id)
-                //    .then(function (statuses) {
-                //        $scope.availableStatuses = statuses.data;
-                //        $location.path('/issues/' + $routeParams.issueId);
-                //    });
-
-                var modifiedIssue = {
-                    Title: $scope.currIssue.Title,
-                    Description: $scope.currIssue.Description,
-                    DueDate: $scope.currIssue.DueDate,
-                    ProjectId: $scope.currIssue.Project.Id,
-                    AssigneeId: $scope.currIssue.Assignee.Id,
-                    PriorityId: $scope.currIssue.Priority.Id,
-                    StatusId: currIssue.Status.Id
-                };
-
-                issuesFeed.modifyIssue($routeParams.issueId, modifiedIssue)
+                issuesFeed.changeStatus($routeParams.issueId, currIssue.Status.Id)
                     .then(function (issue) {
-                        //console.log(issue.data);
-                    });
+                        //console.log(issue);
+                        notify.showSuccess("Status changed");
+                        //$location.path('/issues/' + $routeParams.issueId);
+                        $route.reload();
+                    },
+                    function error(err) {
+                        notify.showError("Cannot change status", err);
+                    }
+                );
+
+                //var modifiedIssue = {
+                //    Title: $scope.currIssue.Title,
+                //    Description: $scope.currIssue.Description,
+                //    DueDate: $scope.currIssue.DueDate,
+                //    ProjectId: $scope.currIssue.Project.Id,
+                //    AssigneeId: $scope.currIssue.Assignee.Id,
+                //    PriorityId: $scope.currIssue.Priority.Id,
+                //    StatusId: currIssue.Status.Id
+                //};
+                //
+                //issuesFeed.modifyIssue($routeParams.issueId, modifiedIssue)
+                //    .then(function (issue) {
+                //        //console.log(issue.data);
+                //    });
             };
 
         }]);

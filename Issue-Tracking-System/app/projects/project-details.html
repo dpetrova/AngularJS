@@ -21,6 +21,18 @@
         </div>
     </div>
     <div class="col-md-8">
+        <form name="filterIssueForm">
+            <div class="form-group">
+                <label for="IssueStatus">Find issues by status:</label>
+                <select id="IssueStatus" ng-model="filterByStatus" class="form-control" >
+                    <option value="Open">Open</option>
+                    <option value="InProgress">In Progress</option>
+                    <option value="Resolved">Resolved</option>
+                    <option value="Closed">Closed</option>
+                    <option value="ReOpened">Re-Opened</option>
+                </select>
+            </div>
+        </form>
         <table class="table table-hover">
             <thead>
             <tr>
@@ -31,7 +43,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="issue in projectIssues">
+            <tr ng-repeat="issue in projectIssues | filter:filterByStatus">
                 <td><a href="#/issues/{{issue.Id}}">{{issue.Title}}</a></td>
                 <td>{{issue.Description}}</td>
                 <td>{{issue.DueDate | date}}</td>

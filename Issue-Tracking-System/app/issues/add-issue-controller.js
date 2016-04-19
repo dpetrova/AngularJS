@@ -1,6 +1,7 @@
 angular.module('issueTracker.addIssue', [
     'issueTracker.issues.feed',
-    'issueTracker.users.feed'
+    'issueTracker.users.feed',
+    'issueTracker.notify'
 ])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/projects/:projectId/add-issue', {
@@ -15,7 +16,8 @@ angular.module('issueTracker.addIssue', [
         'identity',
         '$location',
         'usersFeed',
-        function ($scope, $routeParams, issuesFeed, identity, $location, usersFeed) {
+        'notify',
+        function ($scope, $routeParams, issuesFeed, identity, $location, usersFeed, notify) {
 
             usersFeed.getAllUsers()
                 .then(function (users) {
@@ -35,9 +37,14 @@ angular.module('issueTracker.addIssue', [
 
                 issuesFeed.addIssue($routeParams.projectId, newIssue)
                     .then(function (issue) {
-                        console.log(issue.data);
+                        //console.log(issue.data);
+                        notify.showSuccess("Issue added");
                         $location.path('/projects/' + $routeParams.projectId);
-                    });
+                    },
+                    function error(err) {
+                        notify.showError("Cannot add issue", err);
+                    }
+                );
             };
 
             $scope.cancelAddIssue = function(){

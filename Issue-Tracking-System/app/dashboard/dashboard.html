@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-md-5">
         <h2>Affiliated Projects</h2>
-        <div ng-repeat="issue in myIssues" > <!--| unique:'id'-->
+        <div ng-repeat="issue in myIssues.Issues" > <!--| unique:'id'-->
             <h3><a href="#/projects/{{issue.Project.Id}}">{{issue.Project.Name}}</a></h3>
         </div>
     </div>
@@ -18,7 +18,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="issue in myIssues | orderBy:'DueDate'">
+            <tr ng-repeat="issue in myIssues.Issues | orderBy:'DueDate'">
                 <td><a href="#/issues/{{issue.Id}}">{{issue.Title}}</a></td>
                 <td>{{issue.Description}}</td>
                 <td>{{issue.Project.Name}}</td>
@@ -26,5 +26,12 @@
             </tr>
             </tbody>
         </table>
+        <pagination total-items="myIssues.TotalCount"
+                    ng-model="issuesParams.startPage"
+                    items-per-page="issuesParams.pageSize"
+                    ng-change="reloadIssues()"
+                    max-size="9"
+                    boundary-links="true">
+        </pagination>
     </div>
 </div>

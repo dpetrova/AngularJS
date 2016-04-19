@@ -52,7 +52,7 @@ angular.module('issueTracker.users.authentication', [])
                 var defer = $q.defer();
                 $http.get(BASE_URL + 'users/me', {headers: {'Authorization': sessionStorage.headers}})
                     .then(function (response) {
-                        defer.resolve(response.data)
+                        defer.resolve(response.data);
                         //console.log(response.data)
                     }, function (error) {
                         defer.reject(error)
