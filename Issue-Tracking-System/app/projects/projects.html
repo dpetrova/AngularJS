@@ -7,5 +7,13 @@
                 <a href="#/projects/{{project.Id}}" ng-repeat="project in allProjects | orderBy: PostedOn" class="list-group-item">{{project.Name}}</a>
             </ul>
         </div>
+
+        <pagination total-items="allProjects.numItems"
+                    ng-model="projectsParams.startPage"
+                    items-per-page="projectsParams.pageSize"
+                    ng-change="reloadAds()"
+                    max-size="9"
+                    boundary-links="true">
+        </pagination>
     </div>
 </div>

@@ -3,6 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('issueTracker', [
   'ngRoute',
+  'ngResource',
   'issueTracker.common',
   'issueTracker.common.footer',
   'issueTracker.common.datepicker',
@@ -15,7 +16,8 @@ angular.module('issueTracker', [
   'issueTracker.issueDetails',
   'issueTracker.addIssue',
   'issueTracker.editIssue',
-  'issueTracker.users.identity'
+  'issueTracker.users.identity',
+  'ui.bootstrap.pagination'
 ])
     .config(['$routeProvider', function($routeProvider) {
       $routeProvider.otherwise({redirectTo: '/'});

@@ -12,9 +12,15 @@ angular.module('issueTracker.projects', [
         'feed',
         function ($scope, feed) {
 
+            $scope.projectsParams = {
+                'startPage' : 1,
+                'pageSize' : 10
+            };
+
             feed.getAllProjects(10, 1)
                 .then(function (allProjects) {
                     $scope.allProjects = allProjects.data;
+                    console.log($scope.allProjects)
                 });
 
         }]);
