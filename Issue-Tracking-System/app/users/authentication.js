@@ -14,7 +14,6 @@ angular.module('issueTracker.users.authentication', [])
                     data: user
                 }).then(function success(response) {
                         deferred.resolve(response.data);
-                        sessionStorage.setItem('user', response.data);
                     }, function error(error) {
                         deferred.reject(error.data.message);
                     });
@@ -33,6 +32,7 @@ angular.module('issueTracker.users.authentication', [])
                 }).then(function success(response) {
                     deferred.resolve(response.data);
                     var token = response.data.access_token;
+                    $http.defaults.headers.common.Authorization = 'Bearer ' + token;
                     sessionStorage.setItem('user', angular.toJson(response.data));
                     sessionStorage.headers = 'Bearer ' + token;
                     sessionStorage.userName = response.data.userName;
@@ -46,6 +46,7 @@ angular.module('issueTracker.users.authentication', [])
             function logout() {
                 sessionStorage.clear();
                 $http.defaults.headers.common.Authorization = null;
+
             }
 
             function getCurrentUser() {
@@ -77,6 +78,7 @@ angular.module('issueTracker.users.authentication', [])
 
                 return deferred.promise;
             }
+
 
             return {
                 registerUser: register,

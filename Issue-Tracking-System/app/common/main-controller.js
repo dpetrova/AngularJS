@@ -28,6 +28,7 @@ angular.module('issueTracker.common', [
             $scope.isAuthenticated = identity.isAuthenticated();
 
             $scope.logout = function () {
+                $scope.isAuthenticated = false;
                 authentication.logout();
                 notify.showInfo("Logout successfully");
                 $location.path('/');

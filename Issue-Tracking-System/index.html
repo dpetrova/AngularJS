@@ -15,6 +15,7 @@
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
+            <!--<a href="#/" class="navbar-brand"><span id="icon"><img src="app/images/coge.png" >Issue Tracking System</span></a>-->
             <a href="#/" class="navbar-brand">Issue Tracking System</a>
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                 <span class="icon-bar"></span>
@@ -33,7 +34,7 @@
                 <li>
                     <a href="#/profile/password">Profile</a>
                 </li>
-                <li>
+                <li ng-if="isAuthenticated">
                     <a href="" ng-click="logout()">Logout</a>
                 </li>
             </ul>

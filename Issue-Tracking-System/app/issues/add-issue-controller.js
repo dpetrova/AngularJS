@@ -24,7 +24,6 @@ angular.module('issueTracker.addIssue', [
                     $scope.allUsers = users.data;
                 });
 
-
            $scope.addNewIssue = function(issue){
                 var newIssue = {
                     Title: issue.Title,

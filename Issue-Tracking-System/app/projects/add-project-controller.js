@@ -23,6 +23,10 @@ angular.module('issueTracker.addProject', [
                     $scope.allUsers = users.data;
                 });
 
+            feed.getLabels('')
+                .then(function(labels){
+                    $scope.labels = labels.data;
+                });
 
             $scope.addNewProject = function(project){
                 project.Priorities = [];
@@ -30,17 +34,25 @@ angular.module('issueTracker.addProject', [
                     project.Priorities.push({Name: priorityName});
                 });
 
-                project.Labels = [];
-                project.AllLabels.split(/[\s+|,]+/).forEach(function (labelName) {
-                    project.Labels.push({Name: labelName});
-                });
+                //project.Labels = [];
+                //project.AllLabels.split(/[\s+|,]+/).forEach(function (labelName) {
+                //    project.Labels.push({Name: labelName});
+                //});
+
+                var projectKey = project.Name
+                    .split(/\s+/)
+                    .map(function (el) {
+                        return el[0].toUpperCase();
+                    })
+                    .join('');
 
                 var newProject = {
                     Name: project.Name,
                     Description: project.Description,
-                    ProjectKey: project.ProjectKey,
+                    //ProjectKey: project.ProjectKey,
+                    ProjectKey: projectKey,
                     Priorities: project.Priorities,
-                    Labels: project.Labels,
+                    Labels: [project.AllLabels],
                     LeadId: project.LeadId
                 };
 

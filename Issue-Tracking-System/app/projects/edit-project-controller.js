@@ -24,6 +24,10 @@ angular.module('issueTracker.editProject', [
                     $scope.allUsers = users.data;
                 });
 
+            feed.getLabels('')
+                .then(function(labels){
+                    $scope.labels = labels.data;
+                });
 
             feed.getProjectById($routeParams.projectId)
                 .then(function (project) {
@@ -44,6 +48,7 @@ angular.module('issueTracker.editProject', [
                     Name: project.Name,
                     Description: project.Description,
                     Priorities: project.Priorities,
+                    Labels: [project.AllLabels],
                     LeadId: project.Lead.Id
                 };
 

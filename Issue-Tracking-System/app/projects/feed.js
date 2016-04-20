@@ -51,10 +51,22 @@ angular.module('issueTracker.projects.feed', [])
                 return deferred.promise;
             }
 
+            function getLabels(filter) {
+                var deferred = $q.defer();
+
+                $http.get(BASE_URL + 'Labels/?filter=' + filter)
+                    .then(function (labels) {
+                        deferred.resolve(labels);
+                    });
+
+                return deferred.promise;
+            }
+
             return {
                 getAllProjects: getAllProjects,
                 getProjectById: getProjectById,
                 addProject: addProject,
-                editProject: editProject
+                editProject: editProject,
+                getLabels: getLabels
             };
         }]);

@@ -12,7 +12,8 @@ angular.module('issueTracker.dashboard', [
     .controller('DashboardCtrl', [
         '$scope',
         'issuesFeed',
-        function ($scope, issuesFeed) {
+        '$route',
+        function ($scope, issuesFeed, $route) {
 
             $scope.issuesParams = {
                 'pageSize' : 10,

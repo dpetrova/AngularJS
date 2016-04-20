@@ -13,6 +13,7 @@ angular.module('issueTracker.users.identity', [])
                 var accessToken = currentUser.access_token;
 
                 $http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
+                //$http.defaults.headers.common.Authorization = sessionStorage.headers;
 
                 $http.get(BASE_URL + 'users/me')
                     .then(function(response) {
