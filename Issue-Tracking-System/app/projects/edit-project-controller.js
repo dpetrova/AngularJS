@@ -1,7 +1,8 @@
 angular.module('issueTracker.editProject', [
     'issueTracker.projects.feed',
     'issueTracker.users.feed',
-    'issueTracker.notify'
+    'issueTracker.notify',
+    'issueTracker.common.autocomplete'
 ])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/projects/:projectId/edit', {
@@ -27,6 +28,13 @@ angular.module('issueTracker.editProject', [
             feed.getLabels('')
                 .then(function(labels){
                     $scope.labels = labels.data;
+
+                    var labelsNames = [];
+                    labels.data.forEach(function(label){
+                        labelsNames.push(label.Name);
+                    });
+
+                    $scope.labelsNames = labelsNames;
                 });
 
             feed.getProjectById($routeParams.projectId)
@@ -44,11 +52,15 @@ angular.module('issueTracker.editProject', [
                     project.Priorities.push({Name: priorityName});
                 });
 
+                var label = $scope.labels.filter(function(label){
+                    return label.Name === project.AllLabels;
+                });
+
                 var mofifiedProject = {
                     Name: project.Name,
                     Description: project.Description,
                     Priorities: project.Priorities,
-                    Labels: [project.AllLabels],
+                    Labels: label,
                     LeadId: project.Lead.Id
                 };
 

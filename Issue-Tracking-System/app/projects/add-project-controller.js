@@ -1,7 +1,8 @@
 angular.module('issueTracker.addProject', [
     'issueTracker.projects.feed',
     'issueTracker.users.feed',
-    'issueTracker.notify'
+    'issueTracker.notify',
+    'issueTracker.common.autocomplete'
 ])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/projects-add', {
@@ -26,18 +27,18 @@ angular.module('issueTracker.addProject', [
             feed.getLabels('')
                 .then(function(labels){
                     $scope.labels = labels.data;
+
+                    var labelsNames = [];
+                    labels.data.forEach(function(label){
+                        labelsNames.push(label.Name);
+                    });
+
+                    $scope.labelsNames = labelsNames;
+
                 });
+
 
             $scope.addNewProject = function(project){
-                project.Priorities = [];
-                project.AllPriorities.split(/[\s+|,]+/).forEach(function (priorityName) {
-                    project.Priorities.push({Name: priorityName});
-                });
-
-                //project.Labels = [];
-                //project.AllLabels.split(/[\s+|,]+/).forEach(function (labelName) {
-                //    project.Labels.push({Name: labelName});
-                //});
 
                 var projectKey = project.Name
                     .split(/\s+/)
@@ -46,15 +47,24 @@ angular.module('issueTracker.addProject', [
                     })
                     .join('');
 
+                project.Priorities = [];
+                project.AllPriorities.split(/[\s+|,]+/).forEach(function (priorityName) {
+                    project.Priorities.push({Name: priorityName});
+                });
+
+                var label = $scope.labels.filter(function(label){
+                    return label.Name === project.AllLabels;
+                });
+
                 var newProject = {
                     Name: project.Name,
                     Description: project.Description,
-                    //ProjectKey: project.ProjectKey,
                     ProjectKey: projectKey,
                     Priorities: project.Priorities,
-                    Labels: [project.AllLabels],
+                    Labels: label,
                     LeadId: project.LeadId
                 };
+                //console.log(newProject);
 
                 feed.addProject(newProject)
                     .then(function (project) {

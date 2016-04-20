@@ -56,3 +56,11 @@ img{
   margin-right: 20px;
 }
 
+ul
+{
+  list-style-type: none;
+}
+
+ul:hover {
+  cursor: pointer;
+}
