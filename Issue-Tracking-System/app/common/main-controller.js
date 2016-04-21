@@ -23,6 +23,7 @@ angular.module('issueTracker.common', [
                     $scope.currentUser.Id = data.Id;
                     $scope.currentUser.isAdmin = data.isAdmin;
                     $scope.currentUser.Username = data.Username;
+
                 });
 
             $scope.isAuthenticated = identity.isAuthenticated();

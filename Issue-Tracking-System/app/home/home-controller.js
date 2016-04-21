@@ -13,9 +13,9 @@ angular.module('issueTracker.home', [
         '$location',
         'authentication',
         'identity',
-        '$route',
+        '$window',
         'notify',
-        function($scope, $location, authentication, identity, $route, notify) {
+        function($scope, $location, authentication, identity, $window, notify) {
 
             $scope.login = function (user) {
                 authentication.loginUser(user)
@@ -23,6 +23,7 @@ angular.module('issueTracker.home', [
                         //console.log(loggedInUser);
                         notify.showInfo("Login successfully");                        
                         $location.path('/dashboard');
+                        $window.location.reload();
                     },
                     function error(err) {
                         notify.showError("Login failed", err);
