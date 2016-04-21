@@ -1,7 +1,7 @@
 <h2><span class="glyphicon glyphicon-plus"></span><br>Add New Project</h2>
 <div class="row">
     <div class="col-md-12">
-        <form name="addProjectForm">
+        <form name="addProjectForm" ng-if="currentUser.isAdmin">
             <div><strong>Name: </strong><input ng-model="project.Name" type="text" class="form-control" required placeholder="Name..."></div>
             <div><strong>Description: </strong><input ng-model="project.Description" type="text" class="form-control" required placeholder="Description..."></div>
             <div><strong>Priorities (separated by comma): </strong><input ng-model="project.AllPriorities" type="text" class="form-control" placeholder="Priorities..."></div>

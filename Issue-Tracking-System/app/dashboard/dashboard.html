@@ -8,9 +8,10 @@
         <!--<div ng-repeat="issue in myIssues.Issues | unique:'Project.Id'" >-->
             <!--<h3><a href="#/projects/{{issue.Project.Id}}">{{issue.Project.Name}}</a></h3>-->
         <!--</div>-->
-        <div ng-repeat="project in affiliatedProjects" >
-            <h3><a href="#/projects/{{project.Id}}">{{project.Name}}</a></h3>
+        <div ng-repeat="project in affiliatedProjects">
+            <h3 ><a href="#/projects/{{project.Id}}">{{project.Name}}</a></h3>
         </div>
+        <a href="#/projects-add" class="btn btn-primary" ng-if="currentUser.isAdmin">Add New Project</a>
     </div>
     <div class="col-md-7">
         <h2><span class="glyphicon glyphicon-tasks"></span><br>My Tasks</h2>

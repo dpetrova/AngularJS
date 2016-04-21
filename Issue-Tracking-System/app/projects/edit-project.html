@@ -1,7 +1,7 @@
 <h2><span class="glyphicon glyphicon-pencil"></span><br>Edit Project</h2>
 <div class="row">
     <div class="col-md-12">
-        <form name="editProjectForm">
+        <form name="editProjectForm" ng-if="currentUser.isAdmin || isProjectLead">
             <div><strong>Name: </strong><input ng-model="currProject.Name" type="text" class="form-control" required placeholder="Name..."></div>
             <div><strong>Description: </strong><input ng-model="currProject.Description" type="text" class="form-control" required placeholder="Description..."></div>
             <div><strong>Priorities (separated by comma): </strong><input ng-model="currProject.AllPriorities" type="text" class="form-control" placeholder="Priorities..."></div>
@@ -19,7 +19,7 @@
                           click-activation="true"
                           data="labelsNames">
             </autocomplete>
-            <div class="form-group">
+            <div class="form-group" ng-if="currentUser.isAdmin">
                 <label for="InputLead">Leader</label>
                 <select id="InputLead" required="required" ng-model="currProject.Lead.Id"
                         class="form-control"
