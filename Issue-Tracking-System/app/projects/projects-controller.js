@@ -21,7 +21,7 @@ angular.module('issueTracker.projects', [
                 feed.getAllProjects($scope.projectsParams.pageSize, $scope.projectsParams.startPage)
                     .then(function (allProjects) {
                         $scope.allProjects = allProjects.data;
-                        //console.log($scope.allProjects);
+                        console.log($scope.allProjects);
                     });
             };
 

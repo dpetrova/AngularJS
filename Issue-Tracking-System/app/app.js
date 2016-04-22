@@ -18,7 +18,8 @@ angular.module('issueTracker', [
   'issueTracker.editIssue',
   'issueTracker.users.identity',
   'issueTracker.profile',
-  'ui.bootstrap.pagination'
+  'ui.bootstrap.pagination',
+  'angular-loading-bar'
 ])
     .config(['$routeProvider', function($routeProvider) {
       $routeProvider.otherwise({redirectTo: '/'});
